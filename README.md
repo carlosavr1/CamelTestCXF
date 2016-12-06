@@ -1,4 +1,4 @@
-"# CamelTestCXF
+# CamelTestCXF
 
 Route that every 30 seconds creates a 'List' with the values: 'carlos.a.vallejo.r@gmail.com', 'abc'. To invoke the web service [WSDL](http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx?WSDL) with the VerifyEmail method.
 
@@ -18,4 +18,4 @@ GoodEmail = true
 
 4) Intervene the route, so that before doing the 'to -> InvocacionCXF', you change the URL by which it was defined.
 > NOTE: When the message has the 'CamelDestinationOverrideUrl' property in the Header, the path uses that property as the service address.
-[How to override the CXF producer address from message header ](http://camel.apache.org/cxf.html)"
+[How to override the CXF producer address from message header ](http://camel.apache.org/cxf.html)
