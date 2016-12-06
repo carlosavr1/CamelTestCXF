@@ -23,10 +23,8 @@
    and the Camel namespaces.
 -->
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd                            
-     http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd"
-     xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf">
+    xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd                                  http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
     <!--
       The namespace for the camelContext element in Blueprint is 'https://camel.apache.org/schema/blueprint'. Additionally,
       we can also define namespace prefixes we want to use them in the XPath expressions in our CBR.
@@ -34,22 +32,17 @@
       While it is not required to assign id's to the <camelContext/> and <route/> elements, it is a good idea
       to set those for runtime management purposes (logging, JMX MBeans, ...)
     -->
-    
-    <bean
-		id="constructorRequest"
-    	class="co.com.prueba.ConstructorRequest"/>
-    
+    <bean class="co.com.prueba.ConstructorRequest" id="constructorRequest"/>
     <cxf:cxfEndpoint
         address="http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx"
         id="ValidadorEmail" loggingFeatureEnabled="true" serviceClass="com.cdyne.ws.EmailVerNoTestEmailSoap"/>
-        
     <camelContext id="_contextPrincipal" xmlns="http://camel.apache.org/schema/blueprint">
         <route id="_routePrincipal">
-        	<from id="_fromTimer" uri="timer:tiempoParaIniciarRuta?period=30000"/>
-        	<log id="_logInicial" message="HAN TRANSCURRIDO 3 MINUTOS E INICIARA LA RUTA PRINCIPAL"/>
-        	<process id="_refConstructorRequest" ref="constructorRequest"/>
-        	<to id="_toValidadorEmail" uri="cxf:bean:ValidadorEmail?defaultOperationName=VerifyEmail"/>
-        	<log id="_logRespuesta" message="Lo que respondio el servicio: ${body[0]}"/>
+            <from id="_fromTimer" uri="timer:tiempoParaIniciarRuta?period=30000"/>
+            <log id="_logInicial" message="HAN TRANSCURRIDO 3 MINUTOS E INICIARA LA RUTA PRINCIPAL"/>
+            <process id="_refConstructorRequest" ref="constructorRequest"/>
+            <to id="_toValidadorEmail" uri="cxf:bean:ValidadorEmail?defaultOperationName=VerifyEmail"/>
+            <log id="_logRespuesta" message="Lo que respondio el servicio: ${body[0]}"/>
         </route>
     </camelContext>
 </blueprint>
