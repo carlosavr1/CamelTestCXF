@@ -42,7 +42,7 @@
             <log id="_logInicial" message="HAN TRANSCURRIDO 3 MINUTOS E INICIARA LA RUTA PRINCIPAL"/>
             <process id="_refConstructorRequest" ref="constructorRequest"/>
             <to id="_toValidadorEmail" uri="cxf:bean:ValidadorEmail?defaultOperationName=VerifyEmail"/>
-            <log id="_logRespuesta" message="Lo que respondio el servicio: ${body[0]}"/>
+            <log id="_logRespuesta" message="Lo que respondio el servicio: ${body}"/>
         </route>
     </camelContext>
 </blueprint>
